@@ -2,3 +2,14 @@ html, body, #root, .App {
   min-height: 100% !important;
   height: 100%;
 }
+
+.result-footer-selected {
+  color: #0077cc;
+  cursor: pointer;
+}
+
+.result-footer-selected:hover {
+  color: #0095ff;
+  cursor: pointer;
+}
+
