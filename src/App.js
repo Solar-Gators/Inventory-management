@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Search from './routes/Search';
 import Results from './routes/Results';
+import Import from './routes/Import';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Switch>
             <Route exact path="/" component={Search} />
             <Route exact path={["/results/:search", "/results"]} component={Results} />
+            <Route exact path="/import" component={Import} />
         </Switch>
       </div>
 
