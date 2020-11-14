@@ -10,6 +10,12 @@ export default class SearchField extends React.Component {
         redirect: false
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.redirect === true) {
+            this.setState({ redirect: false })
+        }
+    }
+
     componentDidMount() {
         this.setState({ search: this.props.defaultValue ?? "" })
     }
