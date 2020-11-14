@@ -1,10 +1,13 @@
 import React from 'react'
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Skeleton from 'react-loading-skeleton';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Skeleton from 'react-loading-skeleton'
 import axios from 'axios'
+import * as moment from 'moment'
+
 import ResultsFooter from '../components/ResultsFooter'
 import SearchField from '../components/SearchField'
+
 
 export default class Results extends React.Component {
 
@@ -34,13 +37,13 @@ export default class Results extends React.Component {
                 return (
                 <Row className="border border-secondary align-items-center mx-5 mb-4 text-center" style={{ height: '80px' }}>
                     <Col>
-                        <img src={item.img} alt={item.name + " product image" } />
+                        { item.img ? <img src={item.img} alt={item.name + " product image" } /> : '' }
                     </Col>
                     <Col>
                         {item.name}
                     </Col>
                     <Col>
-                        {item.lastUpdated}
+                        {moment(item.lastUpdated).format("DD/MM/YY")}
                     </Col>
                     <Col>
                         {item.location}
@@ -109,14 +112,14 @@ export default class Results extends React.Component {
 
                 {this.state.pageCount > 1 ? 
                         <Row>
-                        <Col sm={{ offset: 4, span: 4 }} className="text-center user-select-none">
-                            <ResultsFooter
-                                total={this.state.pageCount}
-                                current={this.state.currentPage}
-                                selectPage={this.selectPage}
-                                />
-                        </Col>
-                    </Row>
+                            <Col sm={{ offset: 4, span: 4 }} className="text-center user-select-none">
+                                <ResultsFooter
+                                    total={this.state.pageCount}
+                                    current={this.state.currentPage}
+                                    selectPage={this.selectPage}
+                                    />
+                            </Col>
+                        </Row>
                     : ''
                 }
             </React.Fragment>
