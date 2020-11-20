@@ -16,7 +16,8 @@ export default class Results extends React.Component {
         results: [],
         pageCount: 0,
         currentPage: 0,
-        loading: true
+        loading: true,
+        error: false
     }
 
     componentDidMount() {
@@ -79,6 +80,9 @@ export default class Results extends React.Component {
                 loading: false
             })
         })
+        .catch(() => {
+            this.setState({ error: true })
+        })
     }
 
     render() {
@@ -102,25 +106,32 @@ export default class Results extends React.Component {
                         Location
                     </Col>
                 </Row>
-                {this.state.loading ?
-                    <div className="mx-5">
-                        <Skeleton count={6} height={76} className="mb-4" />
-                    </div>
-                    :
-                    this.generateRows()
-                }
 
-                {this.state.pageCount > 1 ? 
-                        <Row>
-                            <Col sm={{ offset: 4, span: 4 }} className="text-center user-select-none">
-                                <ResultsFooter
-                                    total={this.state.pageCount}
-                                    current={this.state.currentPage}
-                                    selectPage={this.selectPage}
-                                    />
-                            </Col>
-                        </Row>
-                    : ''
+                {this.state.error ? 
+                    <p className="text-center">There has been an internal error while handling your request. Please try again later</p>
+                    :
+                    <React.Fragment>
+                        {this.state.loading ?
+                            <div className="mx-5">
+                                <Skeleton count={6} height={76} className="mb-4" />
+                            </div>
+                            :
+                            this.generateRows()
+                        }
+
+                        {this.state.pageCount > 1 ? 
+                                <Row>
+                                    <Col sm={{ offset: 4, span: 4 }} className="text-center user-select-none">
+                                        <ResultsFooter
+                                            total={this.state.pageCount}
+                                            current={this.state.currentPage}
+                                            selectPage={this.selectPage}
+                                            />
+                                    </Col>
+                                </Row>
+                            : ''
+                        }
+                    </React.Fragment>
                 }
             </React.Fragment>
 
