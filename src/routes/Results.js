@@ -66,7 +66,7 @@ export default class Results extends React.Component {
 
     selectPage = (page) => {
         this.setState({loading: true})
-        axios.get('/api/inventory', {
+        axios.get('https://api.ufsolargators.org/api/inventory', {
             params: {
                 search: this.state.search,
                 pageNumber: page

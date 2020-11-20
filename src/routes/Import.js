@@ -20,8 +20,7 @@ export default class Search extends React.Component {
                         let csv = await acceptedFile[0].text()
                         let json = Papa.parse(csv, { header: true, skipEmptyLines: 'greedy' })
                         let rows = json.data
-                        console.log(rows)
-                        axios.post("/api/inventory", {
+                        axios.post("https://api.ufsolargators.org/api/inventory", {
                             inventory: rows
                         })
                     }}
