@@ -5,25 +5,28 @@ import Dropzone from 'react-dropzone';
 import Papa from 'papaparse';
 import axios from 'axios';
 
+
 export default class Search extends React.Component {
 
     state = {
         itemDropped: false
+    }
+    
+    uploadCsv = async (acceptedFile, rejectedFile) => {
+
+        let csv = await acceptedFile[0].text()
+        let json = Papa.parse(csv, { header: true, skipEmptyLines: 'greedy' })
+        let rows = json.data
+        axios.post(process.env["REACT_BASE_URL"] ?? "" + "/api/inventory", {
+            inventory: rows
+        })
     }
 
     render() {
         return (
             <Row className="align-items-center" style={{ height: 'calc(100% - 76px)' }}>
                 <Col md={{span: 4, offset: 4}}>
-                    <Dropzone onDrop={async (acceptedFile, rejectedFile) => {
-
-                        let csv = await acceptedFile[0].text()
-                        let json = Papa.parse(csv, { header: true, skipEmptyLines: 'greedy' })
-                        let rows = json.data
-                        axios.post("https://api.ufsolargators.org/api/inventory", {
-                            inventory: rows
-                        })
-                    }}
+                    <Dropzone onDrop={this.uploadCsv}
                     accept=".csv"
                     >
                         {({getRootProps, getInputProps}) => (

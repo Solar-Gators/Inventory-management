@@ -39,7 +39,7 @@ export default class SearchField extends React.Component {
         return (
             <React.Fragment>
                 <Form inline onSubmit={this.handleSubmit}>
-                    { this.state.redirect ? <Redirect to={"/results/" + this.state.search} /> : '' }
+                    { this.state.redirect ? <Redirect to={"/results/" + encodeURIComponent(this.state.search)} /> : '' }
                     <Form.Group controlId="formSearch">
                         <Form.Label className="pr-0">
                             <Button variant="light" onClick={this.handleSubmit}>

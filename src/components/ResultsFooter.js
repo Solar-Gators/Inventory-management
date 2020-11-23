@@ -52,7 +52,7 @@ export default function ResultsFooter({ total, current, selectPage }) {
     footer.push(
         <i
             onClick={() => { if (current !== total - 1) raceConditionSelectPage(current + 1)}}
-            className={`fas fa-arrow-right pl-3 ${ current !== total - 1 ? 'result-footer-selected' : ''}`}></i>
+            className={`fas fa-arrow-right pl-3 pb-4 ${ current !== total - 1 ? 'result-footer-selected' : ''}`}></i>
     )
 
     return footer
