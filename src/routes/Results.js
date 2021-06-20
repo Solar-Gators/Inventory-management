@@ -1,19 +1,16 @@
 import React from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import Skeleton from 'react-loading-skeleton'
-import axios from 'axios'
 import * as moment from 'moment'
 import { Link } from 'react-router-dom';
 
-import ResultsFooter from '../components/ResultsFooter'
-import SearchField from '../components/SearchField'
+import Results from '../components/Results/Results'
 import * as inventoryModel from '../models/inventory'
 
 import missingImage from '../content/assets/images/missing-image.png'
 
 
-export default class Results extends React.Component {
+export default class SearchResults extends React.Component {
 
     state = {
         search: '',
@@ -117,54 +114,15 @@ export default class Results extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
-                <Row>
-                    <Col md={{span: 2}} className="mx-5 my-3">
-                        <SearchField defaultValue={this.state.search} />
-                    </Col>
-                </Row>
-                <Row className="align-items-center mx-5 text-center" style={{ height: '80px' }}>
-                    <Col>
-                    </Col>
-                    <Col>
-                        Name
-                    </Col>
-                    <Col>
-                        Location
-                    </Col>
-                    <Col>
-                        Last Updated
-                    </Col>
-                </Row>
-
-                {this.state.error ? 
-                    <p className="text-center">There has been an internal error while handling your request. Please try again later</p>
-                    :
-                    <React.Fragment>
-                        {this.state.loading ?
-                            <div className="mx-5">
-                                <Skeleton count={6} height={76} className="mb-4" />
-                            </div>
-                            :
-                            this.generateRows()
-                        }
-
-                        {this.state.pageCount > 1 ? 
-                                <Row>
-                                    <Col sm={{ offset: 4, span: 4 }} className="text-center user-select-none">
-                                        <ResultsFooter
-                                            total={this.state.pageCount}
-                                            current={this.state.currentPage}
-                                            selectPage={this.selectPage}
-                                            />
-                                    </Col>
-                                </Row>
-                            : ''
-                        }
-                    </React.Fragment>
-                }
-            </React.Fragment>
-
+            <Results
+                results={this.state.results}
+                pageCount={this.state.pageCount}
+                currentPage={this.state.currentPage}
+                search={this.state.search}
+                loading={this.state.loading}
+                error={this.state.error}
+                selectPage={this.selectPage}
+            />
         )
     }
 }

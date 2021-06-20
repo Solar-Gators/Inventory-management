@@ -5,6 +5,7 @@ export default function ResultsFooter({ total, current, selectPage }) {
     //Prevent a new page from being selected twice selecting twice 
     let resultRefreshing = false
     let raceConditionSelectPage = (selected) => {
+        console.log(resultRefreshing, "SELECTING") 
         if (!resultRefreshing) {
             resultRefreshing = true
             selectPage(selected)
@@ -44,7 +45,7 @@ export default function ResultsFooter({ total, current, selectPage }) {
         footer.push(
             <span
                 onClick={() => raceConditionSelectPage(currentIndex)}
-                className={`px-2 ${currentIndex !== current ? 'result-footer-selected' : ''}`} style={{fontSize: '20px'}}>
+                className={`px-2 ${currentIndex !== current ? 'result-footer-to-select' : 'result-footer-selected'}`} style={{fontSize: '20px'}}>
                 {currentIndex + 1}
             </span>
         )
@@ -52,9 +53,11 @@ export default function ResultsFooter({ total, current, selectPage }) {
     footer.push(
         <i
             onClick={() => { if (current !== total - 1) raceConditionSelectPage(current + 1)}}
-            className={`fas fa-arrow-right pl-3 pb-4 ${ current !== total - 1 ? 'result-footer-selected' : ''}`}></i>
+            className={`fas fa-arrow-right pl-3 pb-4 ${ current !== total - 1 ? 'result-footer-to-select' : 'result-footer-selected'}`}></i>
     )
 
-    return footer
+    return <React.Fragment>
+        {footer}
+    </React.Fragment>
 
 }

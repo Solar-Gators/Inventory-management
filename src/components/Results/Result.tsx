@@ -1,41 +1,31 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import moment from 'moment'
 import Skeleton from 'react-loading-skeleton'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
-import * as moment from 'moment'
-import missingImage from '../content/assets/images/missing-image.png'
-import { Link } from 'react-router-dom'
-import * as inventoryModel from '../models/inventory'
+import missingImage from '../../content/assets/images/missing-image.png'
 
-export default class Result extends React.Component {
 
-    state = {
-        loading: true,
-        error: false,
-        details: {
-            name: null,
-            img: null,
-            lastUpdated: null,
-            location: null
-        }
-    }
-
-    componentDidMount() {
-        inventoryModel.findOne(decodeURIComponent(this.props.match.params.id))
-        .then(({data: response}) => {
-            this.setState({ details: response, loading: false })
-        })
-        .catch(() => {
-            this.setState({ error: true })
-        })
-    }
+export default class Result extends React.Component<
+{
+    details: {
+        name: string,
+        img: string,
+        lastUpdated: string,
+        location: string
+    },
+    loading: boolean,
+    error: boolean,
+    search: string
+}> {
 
     render() {
-        let { details, loading, error } = this.state
+        let { details, loading, error, search } = this.props
         return (
             <React.Fragment>
-                <Link to={`/results/${this.props.match.params.search ?? ""}`}>
+                <Link to={`/results/${search ?? ""}`}>
                     <Button className="pull-left mt-3 ml-4" variant="outline-primary" size="sm">Return to Search</Button>
                 </Link>
                 {

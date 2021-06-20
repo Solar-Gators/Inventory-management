@@ -4,11 +4,15 @@ html, body, #root, .App {
 }
 
 .result-footer-selected {
+  pointer-events: none;
+}
+
+.result-footer-to-select {
   color: #0077cc;
   cursor: pointer;
 }
 
-.result-footer-selected:hover {
+.result-footer-to-select:hover {
   color: #0095ff;
   cursor: pointer;
 }
@@ -54,4 +58,9 @@ html, body, #root, .App {
     margin-bottom: 0;
     vertical-align: middle;
   }
+}
+
+
+main {
+  margin-left: 270px;
 }
