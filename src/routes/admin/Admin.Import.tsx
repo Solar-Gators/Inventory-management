@@ -53,7 +53,6 @@ function UploadedResults({ loadedItems }) {
                             currentPage={currentPage}
                             search={""}
                             selectPage={(pageNumber) => {
-                                console.log(pageNumber)
                                 setCurrentPage(pageNumber)
                             }}
                             loading={false}
