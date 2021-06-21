@@ -3,11 +3,14 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropzone from 'react-dropzone';
 import Papa from 'papaparse';
+import ClipLoader from "react-spinners/ClipLoader";
 import Button from 'react-bootstrap/esm/Button';
 import { MemoryRouter, Route } from 'react-router-dom';
 import Results from '../../components/Results/Results'
 import Result from '../../components/Results/Result'
 import * as inventoryModel from '../../models/inventory'
+import { css } from "@emotion/react";
+import Alert from "react-bootstrap/Alert"
 
 function UploadZone({uploadCsv}) {
     return <Row className="align-items-center" style={{ height: 'calc(100% - 76px)' }}>
@@ -72,7 +75,11 @@ export default class AdminImport extends React.Component {
     state = {
         itemDropped: false,
         loadedItems: [],
-        page: 1
+        page: 1,
+        submitting: false,
+        errorSubmitting: false,
+        errorProcessing: false,
+        success: false,
     }
     
     /**
@@ -88,30 +95,55 @@ export default class AdminImport extends React.Component {
             {
                 if (!(key in row)) {
                     //TODO: error
-                    console.log(key, row)
-                    console.error("ERRROR")
+                    console.error(key, row)
+                    this.setState({ errorProcessing: true })
                     return
                 }
             }
             row._id = index
         } 
 
-        this.setState({ itemDropped: true, loadedItems: rows })
+        this.setState({ itemDropped: true, loadedItems: rows, errorSubmitting: false, errorProcessing: false, success: false })
     }
 
     /**
      * Handles saving the file
      */
     saveFile = () => {
-        inventoryModel.create(this.state.loadedItems)
+        this.setState({ submitting: true }, async () => {
+            try {
+                await inventoryModel.create(this.state.loadedItems)
+                this.setState({ success: true, loadedItems: [], itemDropped: false })
+            }
+            catch (err) {
+                console.error(err)
+                this.setState({ errorSubmitting: true })
+            }
+
+            this.setState({ submitting: false })
+        })
     }
 
     render() {
 
-        let { itemDropped, loadedItems } = this.state
+        let { itemDropped, loadedItems, submitting, success, errorSubmitting, errorProcessing } = this.state
+
+
+        if (submitting) {
+            return <ClipLoader 
+                        css={css`
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                `} />
+        }
 
         return (
-            itemDropped ?
+            <React.Fragment>
+                { success ? <Alert variant="success" className="text-center m-3">Your inventory has successfully been submitted.</Alert> : "" }
+                { errorSubmitting ? <Alert variant="danger" className="text-center m-3">There has been an error submitting your inventory.</Alert> : "" }
+                { errorProcessing ? <Alert variant="danger" className="text-center m-3">There has been an error processing your csv file. Make sure that the heading has the required fields.</Alert> : "" }
+            { itemDropped ?
                 <React.Fragment>
                     <h2 className="text-center mt-3">Imported items are below</h2>
                     <UploadedResults loadedItems={loadedItems} />
@@ -121,6 +153,8 @@ export default class AdminImport extends React.Component {
                 </React.Fragment>
                 
                 : <UploadZone uploadCsv={this.uploadCsv} />
+            }
+            </React.Fragment>
         )
     }
 }

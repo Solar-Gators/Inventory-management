@@ -12,8 +12,9 @@ import { SidebarHeader, SidebarContent, ProSidebar, Menu, MenuItem, SubMenu } fr
 import Search from './routes/Search';
 import Results from './routes/Results';
 import Result from './routes/Result';
-import Import from './routes/Import';
 import AdminImport from './routes/admin/Admin.Import'
+import AdminAdd from './routes/admin/Admin.add'
+import AdminEdit from './routes/admin/Admin.edit'
 
 import logo from './content/assets/images/logo.png';
 
@@ -37,6 +38,19 @@ const SearchRoute = ({exact, path, component:Component, ...rest}) => {
   />
 }
 
+const NavLink = (props) => {
+  var isActive = window.location.pathname === props.to
+  return(
+    
+        <MenuItem active={isActive}>
+          <Link {...props} style={isActive ? { color: "#d8d8d8" } : {}}>
+              {props.children}
+              </Link>
+        </MenuItem>
+    
+  );
+}
+
 const AdminRoute = ({exact, path, component:Component, ...rest}) => {
   return <Route exact={exact} path={path} {...rest} render={(routeProps) => {
     return <React.Fragment>
@@ -47,9 +61,9 @@ const AdminRoute = ({exact, path, component:Component, ...rest}) => {
               <SidebarContent>
                 <Menu iconShape="square" className="h3">
                   {/* <SubMenu title="Components" > */}
-                    <MenuItem>Add Items</MenuItem>
-                    <MenuItem>Edit Items</MenuItem>
-                    <MenuItem active>Import Items</MenuItem>
+                    <NavLink to="/admin/add">Add Items</NavLink>
+                    <NavLink to="/admin/edit">Edit Items</NavLink>
+                    <NavLink to="/admin/import">Import Items</NavLink>
                 </Menu>
               </SidebarContent>
             </ProSidebar>
@@ -67,6 +81,8 @@ function App() {
       <div className="App">
         <Switch>
             <AdminRoute exact path="/admin/import" component={AdminImport} />
+            <AdminRoute exact path="/admin/add" component={AdminAdd} />
+            <AdminRoute exact path="/admin/edit" component={AdminEdit} />
             <SearchRoute exact path="/" component={Search} />
             <SearchRoute exact path={["/results/:search", "/results"]} component={Results} />
             <SearchRoute exact path={["/result/:search/:id", "/result/:id"]} component={Result} />

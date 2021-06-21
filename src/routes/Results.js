@@ -74,25 +74,6 @@ export default class SearchResults extends React.Component {
     setUpSearch = () => {
         this.setState({ search: decodeURIComponent(this.props.match.params.search ?? "") }, () => {
             this.selectPage(0)
-            // setTimeout(() => {
-            //     this.setState({
-            //         results: [
-            //             {
-            //                 name: 'item 1',
-            //                 img: null,
-            //                 lastUpdated: new Date(),
-            //                 location: 'Box A'
-            //             },
-            //             {
-            //                 name: 'item 2',
-            //                 img: null,
-            //                 lastUpdated: new Date(),
-            //                 location: 'Box B'
-            //             }
-            //         ],
-            //         loading: false
-            //     })
-            // }, 1000)
         })
     }
 
