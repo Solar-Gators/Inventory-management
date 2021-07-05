@@ -3,7 +3,6 @@ import * as inventoryModel from '../../models/inventory'
 import InventoryItem from '../../components/Admin/InventoryItem'
 import Results from '../../components/Results/Results'
 import Alert from "react-bootstrap/Alert"
-import * as inventoryMock from "../../mocks/mocks.inventory"
 
 import { MemoryRouter, Route } from 'react-router-dom';
 
@@ -47,9 +46,6 @@ export default function AdminEdit() {
     const [successEdit, setSuccessEdit] = useState(false)
 
     useEffect(() => {
-        // inventoryMock.search()
-        setLoadedItems(inventoryMock.searchResponse)
-        setLoading(false)
         inventoryModel.search("", 1)
         .then((response) => {
             setLoadedItems(response)
