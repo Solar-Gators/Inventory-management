@@ -1,12 +1,28 @@
 import axios from './libs/axios'
 
+
+export interface InventoryFields {
+    "name": string,
+    "description": string,
+    "quantity": number,
+    "subSystem": string,
+    "system": string,
+    "location": string,
+    "lastUpdated": string,
+    "img": string
+}
+
+export interface InventoryItem extends InventoryFields {
+    "_id": string,
+}
+
 /**
  * Runs a search for a particular page and query
  * 
  * @param {string} query search query 
  * @param {string} page page number
  */
-export function search(query, page) {
+export function search(query, page): Promise<InventoryItem[]> {
     return axios.get('/api/inventory/search', {
         params: {
             search: query,
@@ -20,7 +36,7 @@ export function search(query, page) {
  * 
  * @param {string | number} id 
  */
-export function findOne(id) {
+export function findOne(id): Promise<InventoryItem> {
     return axios.get('/api/inventory', {
         params: {
             id: id
@@ -31,10 +47,21 @@ export function findOne(id) {
 /**
  * Creates inventory items
  * 
- * @param {string[]} inventory 
+ * @param {InventoryFields[]} inventory 
  */
-export function create(inventory) {
+export function create(inventory: InventoryFields[]) {
     return axios.post('/api/inventory', {
+        inventory: inventory
+    })
+}
+
+/**
+ * Edits an inventory item
+ * 
+ * @param {InventoryItem} inventory 
+ */
+export function edit(inventory: InventoryItem): Promise<{ message: string, valid: boolean }> {
+    return axios.put('/api/inventory', {
         inventory: inventory
     })
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropzone from 'react-dropzone';
@@ -65,7 +65,6 @@ function UploadedResults({ loadedItems }) {
                             error={false}
                             search={""} />
             }} />
-            
         </MemoryRouter>
 }
 

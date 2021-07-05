@@ -5,7 +5,6 @@ export default function ResultsFooter({ total, current, selectPage }) {
     //Prevent a new page from being selected twice selecting twice 
     let resultRefreshing = false
     let raceConditionSelectPage = (selected) => {
-        console.log(resultRefreshing, "SELECTING") 
         if (!resultRefreshing) {
             resultRefreshing = true
             selectPage(selected)

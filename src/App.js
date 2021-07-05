@@ -28,7 +28,6 @@ const SearchRoute = ({exact, path, component:Component, ...rest}) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="ml-auto pr-4">
                     <Link className="nav-link" to="/">Search</Link>
-                    <Link className="nav-link" to="/admin">Manage</Link>
                   </Nav>
                 </Navbar.Collapse>
               </Navbar>
@@ -81,7 +80,7 @@ function App() {
       <div className="App">
         <Switch>
             <AdminRoute exact path="/admin/import" component={AdminImport} />
-            <AdminRoute exact path="/admin/add" component={AdminAdd} />
+            <AdminRoute exact path={["/admin/add", "/admin"]} component={AdminAdd} />
             <AdminRoute exact path="/admin/edit" component={AdminEdit} />
             <SearchRoute exact path="/" component={Search} />
             <SearchRoute exact path={["/results/:search", "/results"]} component={Results} />

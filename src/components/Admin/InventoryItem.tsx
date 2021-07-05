@@ -38,7 +38,6 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
         <Form.Group as={Col} controlId="formTitle">
             <Form.Label>Name</Form.Label>
             <Form.Control
-                id="name"
                 name="name"
                 placeholder="Enter Item Name"
                 onChange={formik.handleChange}
@@ -52,7 +51,6 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
         <Form.Group as={Col} controlId="formGridPassword">
             <Form.Label>Location</Form.Label>
             <Form.Control
-                id="location"
                 name="location"
                 placeholder="Enter Item Location"
                 onChange={formik.handleChange}
@@ -68,7 +66,6 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
         <Form.Group as={Col} controlId="formGridAddress2">
             <Form.Label>System</Form.Label>
             <Form.Control
-                id="system"
                 name="system"
                 placeholder="Enter System"
                 onChange={formik.handleChange}
@@ -82,7 +79,6 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
         <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label>Subsystem</Form.Label>
                 <Form.Control
-                    id="subSystem"
                     name="subSystem"
                     placeholder="Enter Sub System"
                     onChange={formik.handleChange}
@@ -95,7 +91,6 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
         <Form.Group as={Col} md={2} lg={1} controlId="formGridAddress1">
             <Form.Label>Quantity</Form.Label>
             <Form.Control
-                id="quantity"
                 name="quantity"
                 type="number"
                 placeholder="Enter Quantity"
@@ -112,7 +107,6 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
         <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Description</Form.Label>
             <Form.Control
-                id="description"
                 name="description"
                 as="textarea"
                 onChange={formik.handleChange}
@@ -124,7 +118,7 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
         </Form.Group>
     </Form.Row>
 
-    <Button variant="primary" type="submit">Add</Button>
+    <Button variant="primary" type="submit">Submit</Button>
 </Form>
 }
 

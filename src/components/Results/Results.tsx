@@ -4,19 +4,14 @@ import Row from 'react-bootstrap/Row'
 import Skeleton from 'react-loading-skeleton'
 import moment from 'moment'
 import { Link } from 'react-router-dom';
+import * as inventoryModel from "../../models/inventory"
 
 import ResultsFooter from '../ResultsFooter'
 import SearchField from '../SearchField'
 import missingImage from '../../content/assets/images/missing-image.png'
 
 interface Results_Props {
-    results: {
-        _id: string,
-        name: string,
-        location: string,
-        lastUpdated: string,
-        img: string
-    }[],
+    results: inventoryModel.InventoryItem[],
     pageCount: number,
     currentPage: number,
     selectPage: (pageNumber: number) => void,

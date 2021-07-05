@@ -2,11 +2,6 @@ import React, { useState } from 'react'
 import InventoryItem from '../../components/Admin/InventoryItem'
 import Alert from 'react-bootstrap/Alert'
 import * as inventoryModel from '../../models/inventory'
-
-
-
-
-
  
 export default function AdminAddItem() {
 
@@ -22,7 +17,12 @@ export default function AdminAddItem() {
                 setSuccess(false)
                 setError(false)
                 try {
-                    await inventoryModel.create([values])
+                    await inventoryModel.create([
+                        {
+                            ...values,
+                            img: "",
+                            lastUpdated: ""
+                        }])
                     formik.resetForm()
                     setSuccess(true)
                 }
