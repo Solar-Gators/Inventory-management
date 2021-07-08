@@ -20,7 +20,7 @@ export default function AdminAddItem() {
                     await inventoryModel.create([
                         {
                             ...values,
-                            img: ""
+                            image: "" //TODO: add image field
                         }])
                     formik.resetForm()
                     setSuccess(true)

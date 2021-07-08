@@ -33,7 +33,7 @@ function AdminEditItem({ match, editSuccess }) {
                     inventoryModel.edit({
                         _id: match.params.id,
                         lastUpdated: inventoryToEdit.lastUpdated,
-                        img: "",
+                        image: inventoryToEdit.image,
                         ...values
                     })
                     .then((response) => {

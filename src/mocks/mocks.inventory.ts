@@ -10,7 +10,7 @@ export const searchResponse = [
         "subSystem": "",
         "system": "Mechanical",
         "location": "Tool Chest Top",
-        "img": "",
+        "image": "",
         "lastUpdated": "2020-11-22T16:22:04.836Z"
     },
     {
@@ -21,7 +21,7 @@ export const searchResponse = [
         "subSystem": "",
         "system": "Mechanical",
         "location": "Tool Chest Top",
-        "img": "",
+        "image": "",
         "lastUpdated": "2020-11-22T16:22:04.826Z"
     }
 ]

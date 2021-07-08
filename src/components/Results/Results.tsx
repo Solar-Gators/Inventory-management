@@ -17,7 +17,8 @@ interface Results_Props {
     selectPage: (pageNumber: number) => void,
     search: string,
     loading: boolean,
-    error: boolean
+    error: boolean,
+    hasSearch?: boolean
 }
 
 
@@ -28,15 +29,18 @@ export default function Results({
     selectPage,
     search,
     loading,
-    error
+    error,
+    hasSearch
 }: Results_Props) {
     return (
         <React.Fragment>
-            <Row>
-                <Col md={{span: 2}} className="mx-5 my-3">
-                    <SearchField defaultValue={search} />
-                </Col>
-            </Row>
+            {hasSearch === false ? "" :
+                <Row>
+                    <Col md={{span: 2}} className="mx-5 my-3">
+                        <SearchField defaultValue={search} />
+                    </Col>
+                </Row> 
+            }
             <Row className="align-items-center mx-5 text-center" style={{ height: '80px' }}>
                 <Col>
                 </Col>

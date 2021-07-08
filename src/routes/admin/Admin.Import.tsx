@@ -54,7 +54,8 @@ function UploadedResults({ loadedItems }) {
                                 setCurrentPage(pageNumber)
                             }}
                             loading={false}
-                            error={false} />
+                            error={false}
+                            hasSearch={false}/>
             }} />
             <Route exact path={["/result/:search/:id", "/result/:id"]} render={(props) => {
                 return <Result
@@ -87,7 +88,7 @@ export default class AdminImport extends React.Component {
         let rows = json.data
         for (let index = 0; index < rows.length; index++) {
             let row = rows[index]
-            for (let key of ["name", "description", "quantity", "img", "subSystem", "system", "updatedBy", "location"])
+            for (let key of ["name", "description", "quantity", "image", "subSystem", "system", "updatedBy", "location"])
             {
                 if (!(key in row)) {
                     //TODO: error

@@ -8,7 +8,7 @@ export interface InventoryFields {
     "subSystem": string,
     "system": string,
     "location": string,
-    "img": string
+    "image": string
 }
 
 export interface InventoryItem extends InventoryFields {
