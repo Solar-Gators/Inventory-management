@@ -55,7 +55,7 @@ export default class Result extends React.Component<
                         </Row>
                         <Row>
                             <Col className="text-center">
-                                <img alt="result" className="img-fluid" src={details.img ?? missingImage} />
+                                <img alt="result" className="img-fluid" src={missingImage} />
                             </Col>
                             <Col>
                                 <p>Location: {details.location}</p>

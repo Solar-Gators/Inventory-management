@@ -36,7 +36,7 @@ export function findOne() {
 
 export function edit() {
     return sandbox.stub(inventory, "edit").returns(Promise.resolve({
-        valid: true,
+        success: true,
         message: "success"
     }))
 }

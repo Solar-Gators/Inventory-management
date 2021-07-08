@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropzone from 'react-dropzone';
@@ -107,8 +107,15 @@ export default class AdminImport extends React.Component {
      */
     saveFile = () => {
         this.setState({ submitting: true }, async () => {
+            let itemsToSubmit = []
+            for (let loadedItem of this.state.loadedItems) {
+                delete loadedItem._id
+                itemsToSubmit.push(loadedItem)
+            }
+
+
             try {
-                await inventoryModel.create(this.state.loadedItems)
+                await inventoryModel.create(itemsToSubmit)
                 this.setState({ success: true, loadedItems: [], itemDropped: false })
             }
             catch (err) {

@@ -60,7 +60,7 @@ export function create(inventory: InventoryFields[]) {
  * 
  * @param {InventoryItem} inventory 
  */
-export function edit(inventory: InventoryItem): Promise<{ message: string, valid: boolean }> {
+export function edit(inventory: InventoryItem): Promise<{ message: string, success: boolean }> {
     return axios.put('/api/inventory', {
         inventory: inventory
     }).then((response) => response.data)

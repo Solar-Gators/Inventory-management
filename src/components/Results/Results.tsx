@@ -80,7 +80,7 @@ export default function Results({
                                             className="border border-secondary mx-5 mb-4 text-center overflow-hidden result"
                                             style={{ height: '80px'}}>
                                             <Col className="my-auto mh-100 overflow-hidden" xs={3}>
-                                                <img height="70px" src={item.img ?? missingImage} alt={item.name + " product image" } />
+                                                <img height="70px" src={missingImage} alt={item.name + " product image" } />
                                             </Col>
                                             <Col className="my-auto mh-100 overflow-hidden" xs={3} style={{ textOverflow: 'ellipsis' }}>
                                                 {item.name}

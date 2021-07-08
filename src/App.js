@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { SidebarHeader, SidebarContent, ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { SidebarHeader, SidebarContent, ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 
 import Search from './routes/Search';
 import Results from './routes/Results';
