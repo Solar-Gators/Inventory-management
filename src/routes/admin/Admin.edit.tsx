@@ -46,7 +46,8 @@ export default function AdminEdit() {
     const [successEdit, setSuccessEdit] = useState(false)
 
     useEffect(() => {
-        inventoryModel.search("", 1)
+        //TODO: handle paging
+        inventoryModel.search("", 0)
         .then((response) => {
             setLoadedItems(response)
             setLoading(false)
