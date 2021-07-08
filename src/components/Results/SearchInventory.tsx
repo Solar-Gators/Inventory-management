@@ -1,16 +1,16 @@
 import React from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import * as moment from 'moment'
+import moment from 'moment'
 import { Link } from 'react-router-dom';
 
-import Results from '../components/Results/Results'
-import * as inventoryModel from '../models/inventory'
+import Results from './Results'
+import * as inventoryModel from '../../models/inventory'
 
-import missingImage from '../content/assets/images/missing-image.png'
+import missingImage from '../../content/assets/images/missing-image.png'
 
 
-export default class SearchResults extends React.Component {
+export default class SearchInventory extends React.Component<{ search: string }> {
 
     state = {
         search: '',
@@ -26,7 +26,7 @@ export default class SearchResults extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.match.params.search !== this.props.match.params.search) {
+        if (prevProps.search !== this.props.search) {
             this.setUpSearch()
         }
     }
@@ -72,7 +72,7 @@ export default class SearchResults extends React.Component {
     }
 
     setUpSearch = () => {
-        this.setState({ search: decodeURIComponent(this.props.match.params.search ?? "") }, () => {
+        this.setState({ search: decodeURIComponent(this.props.search ?? "") }, () => {
             this.selectPage(0)
         })
     }
