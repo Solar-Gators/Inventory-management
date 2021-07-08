@@ -80,7 +80,7 @@ export default class SearchResults extends React.Component {
     selectPage = (page) => {
         this.setState({loading: true, error: false})
         inventoryModel.search(this.state.search, page)
-        .then(({data: response}) => {
+        .then((response) => {
             this.setState({
                 results: response.results,
                 pageCount : response.totalPages,

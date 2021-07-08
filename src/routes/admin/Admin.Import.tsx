@@ -43,8 +43,6 @@ function UploadedResults({ loadedItems }) {
         }
     }
     
-    
-
     return <MemoryRouter>
             <Route exact path={["/", "/results/:search", "/results"]} component={(props) => {
                 return <Results

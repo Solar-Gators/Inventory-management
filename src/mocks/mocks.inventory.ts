@@ -27,7 +27,7 @@ export const searchResponse = [
 ]
 
 export function search() {
-    return sandbox.stub(inventory, "search").returns(Promise.resolve(searchResponse))
+    return sandbox.stub(inventory, "search").returns(Promise.resolve({ results: searchResponse, totalPages: 1 }))
 }
 
 export function findOne() {

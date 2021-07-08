@@ -8,12 +8,12 @@ export interface InventoryFields {
     "subSystem": string,
     "system": string,
     "location": string,
-    "lastUpdated": string,
     "img": string
 }
 
 export interface InventoryItem extends InventoryFields {
     "_id": string,
+    "lastUpdated": string
 }
 
 /**
@@ -22,13 +22,13 @@ export interface InventoryItem extends InventoryFields {
  * @param {string} query search query 
  * @param {string} page page number
  */
-export function search(query, page): Promise<InventoryItem[]> {
+export function search(query, page): Promise<{ results: InventoryItem[], totalPages: number }> {
     return axios.get('/api/inventory/search', {
         params: {
             search: query,
             pageNumber: page
         }
-    })
+    }).then((response) => response.data)
 }
 
 /**
@@ -41,7 +41,7 @@ export function findOne(id): Promise<InventoryItem> {
         params: {
             id: id
         }
-    })
+    }).then((response) => response.data)
 }
 
 /**
@@ -52,7 +52,7 @@ export function findOne(id): Promise<InventoryItem> {
 export function create(inventory: InventoryFields[]) {
     return axios.post('/api/inventory', {
         inventory: inventory
-    })
+    }).then((response) => response.data)
 }
 
 /**
@@ -63,5 +63,5 @@ export function create(inventory: InventoryFields[]) {
 export function edit(inventory: InventoryItem): Promise<{ message: string, valid: boolean }> {
     return axios.put('/api/inventory', {
         inventory: inventory
-    })
+    }).then((response) => response.data)
 }

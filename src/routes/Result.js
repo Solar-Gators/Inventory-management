@@ -23,7 +23,7 @@ export default class Result extends React.Component {
 
     componentDidMount() {
         inventoryModel.findOne(decodeURIComponent(this.props.match.params.id))
-        .then(({data: response}) => {
+        .then((response) => {
             this.setState({ details: response, loading: false })
         })
         .catch(() => {

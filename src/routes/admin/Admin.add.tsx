@@ -20,8 +20,7 @@ export default function AdminAddItem() {
                     await inventoryModel.create([
                         {
                             ...values,
-                            img: "",
-                            lastUpdated: ""
+                            img: ""
                         }])
                     formik.resetForm()
                     setSuccess(true)

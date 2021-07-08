@@ -17,9 +17,11 @@ function AdminEditItem(props) {
         })
 
         //TODO: handle loading error
-    })
+    }, [])
 
     if (loading) return <p>Loading</p>
+
+    debugger
     
     return <React.Fragment>
             <h1 className="pt-3 text-center">Editing An Item</h1>
@@ -49,14 +51,14 @@ export default function AdminEdit() {
         //TODO: handle paging
         inventoryModel.search("", 0)
         .then((response) => {
-            setLoadedItems(response)
+            console.log(response)
+            setLoadedItems(response.results)
             setLoading(false)
         })
         //TODO: handle loading error
-    })
+    }, [])
 
     const RESULT_COUNT = 6
-
     let results = []
     let startPage = currentPage*RESULT_COUNT
     for (let index = startPage; index < startPage + RESULT_COUNT; index++) {
