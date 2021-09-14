@@ -15,6 +15,7 @@ import Result from './routes/Result';
 import AdminImport from './routes/admin/Admin.Import'
 import AdminAdd from './routes/admin/Admin.add'
 import AdminEdit from './routes/admin/Admin.edit'
+import AdminDelete from './routes/admin/Admin.delete'
 
 import logo from './content/assets/images/logo.png';
 
@@ -62,6 +63,7 @@ const AdminRoute = ({exact, path, component:Component, ...rest}) => {
                   {/* <SubMenu title="Components" > */}
                     <NavLink to="/admin/add">Add Items</NavLink>
                     <NavLink to="/admin/edit">Edit Items</NavLink>
+                    <NavLink to="/admin/delete">Delete Items</NavLink>
                     <NavLink to="/admin/import">Import Items</NavLink>
                 </Menu>
               </SidebarContent>
@@ -82,6 +84,7 @@ function App() {
             <AdminRoute exact path="/admin/import" component={AdminImport} />
             <AdminRoute exact path={["/admin/add", "/admin"]} component={AdminAdd} />
             <AdminRoute exact path="/admin/edit" component={AdminEdit} />
+            <AdminRoute exact path="/admin/delete" component={AdminDelete} />
             <SearchRoute exact path="/" component={Search} />
             <SearchRoute exact path={["/results/:search", "/results"]} component={Results} />
             <SearchRoute exact path={["/result/:search/:id", "/result/:id"]} component={Result} />

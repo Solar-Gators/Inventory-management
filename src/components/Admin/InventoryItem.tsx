@@ -16,7 +16,17 @@ export interface Inventory {
 }
 
 
-export default function InventoryItem({initialValues, onSubmit}: { initialValues?: Inventory, onSubmit: (values: Inventory, formik) => void   }) {
+export default function InventoryItem({
+    initialValues,
+    onSubmit,
+    disabled = false,
+    submitButtonText = "Submit"
+}: { 
+    initialValues?: Inventory,
+    onSubmit: (values: Inventory, formik) => void,
+    disabled?: boolean,
+    submitButtonText?: string
+}) {
 
     const formik = useFormik({
         initialValues: initialValues,
@@ -42,7 +52,9 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
                 placeholder="Enter Item Name"
                 onChange={formik.handleChange}
                 value={formik.values.name}
-                isInvalid={formik.touched.name && !!formik.errors.name} />
+                isInvalid={formik.touched.name && !!formik.errors.name}
+                disabled={disabled}
+                />
             <Form.Control.Feedback type="invalid">
                 {formik.errors.name}
             </Form.Control.Feedback>
@@ -55,7 +67,9 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
                 placeholder="Enter Item Location"
                 onChange={formik.handleChange}
                 value={formik.values.location}
-                isInvalid={formik.touched.location && !!formik.errors.location} />
+                isInvalid={formik.touched.location && !!formik.errors.location}
+                disabled={disabled}
+                />
             <Form.Control.Feedback type="invalid">
                 {formik.errors.location}
             </Form.Control.Feedback>
@@ -70,7 +84,9 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
                 placeholder="Enter System"
                 onChange={formik.handleChange}
                 value={formik.values.system}
-                isInvalid={formik.touched.system && !!formik.errors.system} />
+                isInvalid={formik.touched.system && !!formik.errors.system}
+                disabled={disabled}
+                />
             <Form.Control.Feedback type="invalid">
                 {formik.errors.system}
             </Form.Control.Feedback>
@@ -83,7 +99,9 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
                     placeholder="Enter Sub System"
                     onChange={formik.handleChange}
                     value={formik.values.subSystem}
-                    isInvalid={formik.touched.subSystem && !!formik.errors.subSystem} />
+                    isInvalid={formik.touched.subSystem && !!formik.errors.subSystem}
+                    disabled={disabled}
+                    />
                 <Form.Control.Feedback type="invalid">
                     {formik.errors.subSystem}
                 </Form.Control.Feedback>
@@ -96,7 +114,9 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
                 placeholder="Enter Quantity"
                 onChange={formik.handleChange}
                 value={formik.values.quantity}
-                isInvalid={formik.touched.quantity && !!formik.errors.quantity} />
+                isInvalid={formik.touched.quantity && !!formik.errors.quantity}
+                disabled={disabled}
+                />
                 <Form.Control.Feedback type="invalid">
                     {formik.errors.quantity}
                 </Form.Control.Feedback>
@@ -111,14 +131,16 @@ export default function InventoryItem({initialValues, onSubmit}: { initialValues
                 as="textarea"
                 onChange={formik.handleChange}
                 value={formik.values.description}
-                isInvalid={formik.touched.description && !!formik.errors.description} />
+                isInvalid={formik.touched.description && !!formik.errors.description}
+                disabled={disabled}
+                />
                 <Form.Control.Feedback type="invalid">
                     {formik.errors.description}
                 </Form.Control.Feedback>
         </Form.Group>
     </Form.Row>
 
-    <Button variant="primary" type="submit">Submit</Button>
+    <Button variant="primary" type="submit">{submitButtonText}</Button>
 </Form>
 }
 

@@ -65,3 +65,16 @@ export function edit(inventory: InventoryItem): Promise<{ message: string, succe
         inventory: inventory
     }).then((response) => response.data)
 }
+
+/**
+ * Removes an inventory item
+ * 
+ * @param {string} id 
+ */
+export function remove(id: string) {
+    return axios.delete('/api/inventory', {
+        data: {
+            id: id
+        }
+    }).then((response) => response.data)
+}
